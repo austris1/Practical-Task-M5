@@ -1,0 +1,12 @@
+Task 8: Coverage review
+
+Ran all tests with coverage in IntelliJ. Uncovered branches found and decisions:
+
+1.AnimalCsvParser.parseFile() - "if (header == null)" branch (completely empty file).
+It is worth a test. An empty upload is a realistic input, and a bug here could cause a crash or wrong skipped-row count.
+
+2.AnimalCsvParser.parseRow() - "species.isEmpty()" branch.
+Only the empty-name case is tested. It is worth a test. If the species check were removed by mistake, animals with no species would enter the system and no test would fail.
+
+3.AnimalSorter.sortByName()/sortByIntakeDate()/sortBySpeciesThenAgeDescending() - "if (animals == null) "null-input branches.
+It is low priority. Same pattern as sortByAge, which is tested.
